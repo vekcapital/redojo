@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CreditCard, Lock, CheckCircle, AlertCircle } from 'lucide-react';
+import { trackPaymentAttempt, trackPaymentSuccess } from './Analytics';
 
 interface PaymentFormProps {
   amount: number;
@@ -49,6 +50,7 @@ export default function PaymentForm({ amount, hasReferral, formData, onSuccess, 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsProcessing(true);
+    trackPaymentAttempt(amount, hasReferral);
 
     try {
       // Simulate payment processing
@@ -66,6 +68,7 @@ export default function PaymentForm({ amount, hasReferral, formData, onSuccess, 
         cardData
       });
 
+      trackPaymentSuccess(amount, hasReferral);
       onSuccess();
     } catch (error) {
       onError('Payment failed. Please try again.');

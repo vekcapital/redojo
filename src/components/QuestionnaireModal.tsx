@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Send, Globe, MessageSquare, ArrowRight, ArrowLeft, CheckCircle, Users, Palette, Target, X } from 'lucide-react';
+import { trackQuestionnaireStart, trackQuestionnaireComplete } from './Analytics';
 import PaymentForm from './PaymentForm';
 import SuccessModal from './SuccessModal';
 
@@ -31,6 +32,7 @@ export default function QuestionnaireModal({ isOpen, onClose }: QuestionnaireMod
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
+      trackQuestionnaireStart();
     } else {
       document.body.style.overflow = 'unset';
     }
@@ -42,6 +44,7 @@ export default function QuestionnaireModal({ isOpen, onClose }: QuestionnaireMod
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    trackQuestionnaireComplete(formData);
     setShowReferral(true);
   };
 
