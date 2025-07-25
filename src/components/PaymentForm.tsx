@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CreditCard, Lock, CheckCircle, AlertCircle } from 'lucide-react';
 import { trackPaymentAttempt, trackPaymentSuccess } from './Analytics';
+import { saveOrder } from './OrderTracker';
 
 interface PaymentFormProps {
   amount: number;
@@ -69,6 +70,16 @@ export default function PaymentForm({ amount, hasReferral, formData, onSuccess, 
       });
 
       trackPaymentSuccess(amount, hasReferral);
+      
+      // Save order for manual fulfillment
+      const orderData = {
+        ...formData,
+        amount,
+        hasReferral,
+        paymentMethod: 'stripe'
+      };
+      saveOrder(orderData);
+      
       onSuccess();
     } catch (error) {
       onError('Payment failed. Please try again.');
