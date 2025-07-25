@@ -25,10 +25,10 @@ export default function Pricing() {
                 Complete Redesign Package
               </h3>
               <div className="flex items-center justify-center space-x-2 mb-4">
-                <span className="text-5xl font-bold text-gray-900">$497</span>
+                <span className="text-5xl font-bold text-gray-900">$200</span>
                 <div className="text-left">
-                  <div className="text-gray-500 line-through">$997</div>
-                  <div className="text-sm text-emerald-600 font-medium">Save 50%</div>
+                  <div className="text-gray-500 line-through">$497</div>
+                  <div className="text-sm text-emerald-600 font-medium">Save 60%</div>
                 </div>
               </div>
               <p className="text-gray-600">One-time payment, delivered in 24 hours</p>

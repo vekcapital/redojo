@@ -481,7 +481,7 @@ export default function QuestionnaireModal({ isOpen, onClose }: QuestionnaireMod
             )}
             
             <PaymentForm
-              amount={497}
+              amount={200}
               hasReferral={hasReferred}
               formData={formData}
               onSuccess={handlePaymentSuccess}
